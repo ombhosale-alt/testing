@@ -7,7 +7,7 @@
         <div class="video-overlay"></div>
     </div>
     <div class="overlay-text">
-        <h1 class="videotext">Student Assistant</h1>
+        <h1 class="videotext">Gaurav Assistant</h1>
         <p>Your smart partner for Notes, Guidance, and Growth</p>
     </div>
 </section>
