@@ -1,0 +1,267 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+.navbar {
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    padding: 0;
+    transition: background 0.3s, color 0.3s;
+}
+
+.navbar.scrolled {
+    background-color: #fff;
+}
+
+.navbar.scrolled .btn-login,
+.navbar.scrolled .btn-announcements {
+    color: #fff;
+}
+
+.navbar.scrolled .nav-link {
+    color: #000000 !important;
+}
+
+.navbar .nav-link,
+.navbar .btn-announcements {
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.navbar .nav-link:hover {
+    color: #eee;
+}
+
+.navbar .nav-link.active {
+    color: black !important;
+    font-weight: bold;
+}
+
+.hide-logo {
+    display: none;
+}
+
+.show-logo {
+    display: block;
+}
+
+
+
+.btn-login,
+.btn-announcements {
+    /* Login and Announcement Button Color */
+    background-color: #7387B9;
+    border: none;
+    border-radius: 4px;
+    color: #fff !important;
+    padding: 8px 16px;
+    margin-left: 10px;
+}
+
+.btn-announcements:hover,
+.btn-login:hover {
+    background-color: red;
+}
+
+.video-bg {
+    position: relative;
+    height: 80vh;
+    overflow: hidden;
+}
+
+.video-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+* {
+
+    font-family: 'Playfair Display', serif;
+
+
+}
+
+.overlay-text {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+}
+
+.overlay-text h1 {
+    font-size: 3rem;
+}
+
+.feature-section {
+    background: #fff;
+    padding: 40px 20px;
+}
+
+.feature-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+.feature-box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    height: 100%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.features-icon i {
+    font-size: 2rem;
+    color: #7387B9;
+}
+
+
+.transition-hover {
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.transition-hover:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    background-color: #f0f8ff;
+}
+
+/* Optional: Change icon color on hover */
+.transition-hover:hover .features-icon {
+    color: #0d6efd;
+    /* Bootstrap primary */
+}
+
+.meet-our-team-carousel .item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.meet-our-team-carousel .item:hover {
+    transform: translateY(-5px);
+}
+
+.team-member-image {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+
+.counter-section {
+    background-color: #fff;
+    padding: 60px 20px;
+}
+
+.counter-box {
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.counter-box h2 {
+    font-size: 2.5rem;
+    color: #7387B9;
+    font-weight: bold;
+}
+
+.subscribe-section {
+    padding: 50px 0;
+}
+
+.subscribe-input {
+    border: 2px solid #7387B9;
+    border-radius: 10px;
+    padding: 10px 15px;
+    width: 100%;
+    outline: none;
+}
+
+.subscribe-button {
+    background-color: #7387B9;
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 30px;
+}
+
+.subscribe-illustration {
+    max-width: 100%;
+    height: auto;
+}
+
+footer {
+    background-color: #7387B9;
+    color: white;
+    padding: 40px 20px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer .socials i {
+    margin-right: 15px;
+    font-size: 1.5rem;
+}
+
+.footer-bottom {
+    background: #7387B9;
+    text-align: center;
+    padding: 10px;
+}
+
+.about-section ul li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.testimonial-section .border {
+    border-color: #ccc !important;
+}
+
+.container-team {
+    text-align: center !important;
+    justify-content: center;
+}
+
+.About {
+    margin-top: 100px;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .overlay-text h1 {
+        font-size: 2rem;
+    }
+}
+
