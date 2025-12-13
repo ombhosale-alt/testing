@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21 Card Magic Trick</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f9f9f9;
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        .card-box {
+            width: 60px;
+            height: 90px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .card-box:hover {
+            transform: scale(1.05);
+            background: #f0f0ff;
+        }
+
+        .row-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .column:hover {
+            background-color: #e3f2fd;
+            transform: scale(1.02);
+        }
+
+        .selected-column {
+            background-color: #d1c4e9 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container text-center">
+        <h1 class="mb-4">🃏 Mind Read Game</h1>
+        <button id="startBtn" class="btn btn-primary mb-3">Start Game</button>
+        <div id="columns" class="d-flex justify-content-center"></div>
+        <h2 id="result" class="text-success mt-4"></h2>
+    </div>
+
+    <script>
+        const suits = ['♠', '♥', '♦', '♣'];
+        const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+        let fullDeck = [], selectedCards = [], rounds = 0;
+
+      function createDeck() {
+    fullDeck = [];
+    for (let s of suits) {
+        for (let v of values) {
+            fullDeck.push(`${v}${s}`); // ✅ Proper template literal
+        }
+    }
+}
+
+function shuffleAndPick(deck, count) {
+    const shuffled = [...deck].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+}
+
+function dealIntoColumns(cards) {
+    const cols = [[], [], []];
+    for (let i = 0; i < cards.length; i++) {
+        cols[i % 3].push(cards[i]);
+    }
+    return cols;
+}
+
+function renderColumns(columns) {
+    const container = document.getElementById('columns');
+    container.innerHTML = '';
+    columns.forEach((col, idx) => {
+        const colDiv = document.createElement('div');
+        colDiv.className = 'column';
+        colDiv.dataset.index = idx;
+        col.forEach(card => {
+            const cardBox = document.createElement('div');
+            cardBox.className = 'card-box';
+            cardBox.textContent = card;
+
+            // 🔴 Color the card red if it contains ♥ or ♦
+            cardBox.style.color = (card.includes('♥') || card.includes('♦')) ? 'red' : 'black';
+
+            colDiv.appendChild(cardBox);
+        });
+        colDiv.onclick = () => handleSelection(idx, columns);
+        container.appendChild(colDiv);
+    });
+}
+
+function handleSelection(selectedIdx, currentCols) {
+    const cols = [...currentCols];
+    const allCols = document.querySelectorAll('.column');
+    allCols.forEach(col => col.classList.remove('selected-column'));
+    allCols[selectedIdx].classList.add('selected-column');
+
+    const selected = cols[selectedIdx];
+    const others = cols.filter((_, idx) => idx !== selectedIdx);
+    const newOrder = [others[0], selected, others[1]];
+
+    const combined = [...newOrder[0], ...newOrder[1], ...newOrder[2]];
+
+    const redistributed = [[], [], []];
+    for (let i = 0; i < combined.length; i++) {
+        redistributed[i % 3].push(combined[i]);
+    }
+
+    selectedCards = [];
+    for (let i = 0; i < 7; i++) {
+        for (let j = 0; j < 3; j++) {
+            selectedCards.push(redistributed[j][i]);
+        }
+    }
+
+    rounds++;
+
+    if (rounds < 3) {
+        setTimeout(() => {
+            const newCols = dealIntoColumns(selectedCards);
+            renderColumns(newCols);
+        }, 500);
+    } else {
+        document.getElementById('columns').innerHTML = '';
+        const resultCard = selectedCards[10];
+        const resultElement = document.getElementById('result');
+        const color = (resultCard.includes('♥') || resultCard.includes('♦')) ? 'red' : 'black';
+        resultElement.innerHTML = `🎉 Your card is: <span style="color: ${color}">${resultCard}</span>`;
+    }
+}
+
+document.getElementById('startBtn').onclick = () => {
+    createDeck();
+    selectedCards = shuffleAndPick(fullDeck, 21);
+    rounds = 0;
+    const columns = dealIntoColumns(selectedCards);
+    renderColumns(columns);
+    document.getElementById('result').textContent = '';
+};
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veggies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 10px 20px;
+      background-color: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo-img img {
+      width: 50px;
+      height: auto;
+    }
+
+    .nav-list ul {
+      display: flex;
+      gap: 20px;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-list ul li {
+      cursor: pointer;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .nav-btn {
+      display: flex;
+      gap: 15px;
+      color: #333;
+    }
+
+    .nav-btn i {
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .main-banner {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .video {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      text-align: center;
+      color: white;
+      padding: 20px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+
+    .overlay-text h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    .overlay-text span {
+      color: #6fbf73; /* green tint */
+    }
+
+    .overlay-text p {
+      font-size: 1.1rem;
+      margin: 10px 0 20px 0;
+    }
+
+    .shop-btn {
+      background-color: #6fbf73;
+      border: none;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .card-box {
+      text-align: center;
+      margin: 40px 0 20px 0;
+    }
+
+    .card-box h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .card-box span {
+      color: #6fbf73;
+    }
+
+    .card-box h2 {
+      font-size: 1.5rem;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    .sixbox {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .items {
+      background-color: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .items:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .items img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .items h2 {
+      font-size: 1.2rem;
+      color: #333;
+      margin: 10px 0 5px 0;
+    }
+
+    .items p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .items button {
+      background-color: #6fbf73;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 12px;
+      font-size: 0.9rem;
+    }
+
+    .featuree {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .featuree h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .featuree span {
+      color: #6fbf73;
+    }
+
+    .feature {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin: 30px 20px;
+    }
+
+    .contanier-footer {
+      background-color: #6fbf73;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      color: #f0f0f0;
+      padding: 30px 20px;
+      gap: 20px;
+    }
+
+    .contanier-footer .footer,
+    .contanier-footer .quick,
+    .contanier-footer .contact,
+    .contanier-footer .follow {
+      padding: 0 10px;
+    }
+
+    .contanier-footer .footer img {
+      width: 60px;
+      height: 50px;
+      margin-bottom: 10px;
+    }
+
+    .contanier-footer .footer p {
+      font-size: 1rem;
+      color: #f0f0f0;
+    }
+
+    .quick h3, .contact h3, .follow h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: #fff;
+    }
+
+    .quick ul, .contact ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .quick ul li,
+    .contact ul li {
+      margin: 5px 0;
+      color: #f0f0f0;
+    }
+
+    .follow h3 {
+      margin-bottom: 10px;
+    }
+
+    .follow .cdn {
+      display: flex;
+      gap: 15px;
+    }
+
+    .cdndiv i {
+      color: #f0f0f0;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .video {
+        height: 200px;
+      }
+
+      .overlay-text h1 {
+        font-size: 1.8rem;
+      }
+
+      .overlay-text p {
+        font-size: 0.95rem;
+      }
+
+      .shop-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+
+      .card-box h1 {
+        font-size: 1.6rem;
+      }
+
+      .card-box h2 {
+        font-size: 1.2rem;
+      }
+
+      .items img {
+        width: 80px;
+        height: 80px;
+      }
+
+      .items h2 {
+        font-size: 1.1rem;
+      }
+
+      .items p {
+        font-size: 0.8rem;
+      }
+
+      .items button {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+      }
+
+      .contanier-footer {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .nav-list ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .nav-btn {
+        margin-top: 10px;
+      }
+    }
+    .hamburger {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-list ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav-btn {
+    justify-content: flex-start;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo-img">
+      <img src="https://t4.ftcdn.net/jpg/02/75/80/29/360_F_275802937_IisK2QRZpfUXE0tmpHXrX6yO8i4pwiw4.jpg" alt="Veggies Logo">
+    </div>
+    <div class="nav-menu" id="navMenu">
+  <div class="nav-list">
+    <ul>
+      <li>HOME</li>
+      <li>PRODUCT</li>
+      <li>FEATURES</li>
+      <li>CATEGORIES</li>
+    </ul>
+  </div>
+  <div class="nav-btn">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-cart-shopping"></i>
+    <i class="fa-solid fa-user"></i>
+  </div>
+</div>
+
+
+  <!-- Banner Section -->
+  <div class="main-banner">
+    <video autoplay muted loop class="video">
+      <source src="Vegetables fall black  screen backgrounds - Online Stock Footage (1080p, h264).mp4" type="video/mp4">
+      <!-- fallback source here if needed -->
+    </video>
+    <div class="overlay-text">
+      <h1>Fresh <span>Veggies,</span> Delivered to Your Doorstep</h1>
+      <p>Discover a world of freshness with our diverse selection of farm-to-table vegetables.</p>
+      <button class="shop-btn">Shop Now</button>
+    </div>
+  </div>
+
+  <!-- Products Section -->
+  <div class="card-box">
+    <h1>Our <span>Product</span></h1>
+    <h2>Vegetables</h2>
+  </div>
+
+  <div class="sixbox">
+    <div class="items">
+      <img src="https://veggies-ecommerce.netlify.app/images/onion.png" alt="Onion">
+      <h2>Onion</h2>
+      <p>Fresh onions straight from the farm<br>⭐⭐⭐⭐⭐</p>
+      <button>Add to cart</button>
+    </div>
+    <div class="items">
+      <img src="https://veggies-ecommerce.netlify.app/images/potato.png" alt="Potato">
+      <h2>Potato</h2>
+      <p>Always crisp and tasty<br>⭐⭐⭐⭐⭐</p>
+      <button>Add to cart</button>
+    </div>
+    <div class="items">
+      <img src="https://veggies-ecommerce.netlify.app/images/tomato.png" alt="Tomato">
+      <h2>Tomato</h2>
+      <p>Rich juicy flavour<br>⭐⭐⭐⭐⭐</p>
+      <button>Add to cart</button>
+    </div>
+    <div class="items">
+      <img src="https://veggies-ecommerce.netlify.app/images/watermelon.png" alt="Watermelon">
+      <h2>Watermelon</h2>
+      <p>Sweet summer delight<br>⭐⭐⭐⭐⭐</p>
+      <button>Add to cart</button>
+    </div>
+    <div class="items">
+      <img src="https://veggies-ecommerce.netlify.app/images/methi.png" alt="Methi">
+      <h2>Methi</h2>
+      <p>Fresh greens daily<br>⭐⭐⭐⭐⭐</p>
+      <button>Add to cart</button>
+    </div>
+    <div class="items">
+      <img src="https://veggies-ecommerce.netlify.app/images/peas.png" alt="Peas">
+      <h2>Peas</h2>
+      <p>Tender and sweet<br>⭐⭐⭐⭐⭐</p>
+      <button>Add to cart</button>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="featuree">
+    <h1>Our <span>Features</span></h1>
+  </div>
+
+  <div class="feature">
+    <div class="items">
+      <img src="https://veggies-ecommerce.netlify.app/images/fresh_veggies.png" alt="Fresh Vegetables">
+      <h2>Fresh Vegetables</h2>
+      <p>Organic, hand-picked veggies for you.</p>
+      <button>Read More</button>
+    </div>
+    <div class="items">
+      <img src="https://veggies-ecommerce.netlify.app/images/delivery.png" alt="Free Delivery">
+      <h2>Free Delivery</h2>
+      <p>Get your veggies delivered at no extra cost.</p>
+      <button>Read More</button>
+    </div>
+    <div class="items">
+      <img src="https://veggies-ecommerce.netlify.app/images/ruppe.png" alt="Best Price">
+      <h2>Lowest Price</h2>
+      <p>Top quality at the most affordable price.</p>
+      <button>Read More</button>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <div class="contanier-footer">
+    <div class="footer">
+      <img src="veggies-logo.png" alt="Veggies Logo"> <!-- Replace with your logo image -->
+      <p>
+        Explore our vibrant veggie e-commerce hub! From farm-fresh produce to organic delights, discover a
+        kaleidoscope of vegetables for healthy living, delivered to your doorstep.
+      </p>
+    </div>
+    <div class="quick">
+      <h3>Quick Links</h3>
+      <ul>
+        <li>Home</li>
+        <li>About Us</li>
+        <li>Contact</li>
+        <li>Features</li>
+      </ul>
+    </div>
+    <div class="contact">
+      <h3>Contact Us</h3>
+      <ul>
+        <li><i class="fa-solid fa-location-dot"></i> Yashoda College, Satara, MH</li>
+        <li><i class="fa-solid fa-envelope"></i> example@example.com</li>
+        <li><i class="fa-solid fa-phone"></i> +91 1234567890</li>
+      </ul>
+    </div>
+    <div class="follow">
+      <h3>Follow Us</h3>
+      <div class="cdn">
+        <div class="cdndiv"><i class="fa-brands fa-facebook"></i></div>
+        <div class="cdndiv"><i class="fa-brands fa-instagram"></i></div>
+        <div class in="cdndiv"><i class="fa-brands fa-twitter"></i></div>
+        <div class="cdndiv"><i class="fa-brands fa-youtube"></i></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
