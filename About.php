@@ -11,7 +11,7 @@ include 'Navbar.php';
     style="background: linear-gradient(to right, #8499C6, #8499C6); min-height: 50vh;  margin-top: 100px;">
     <div class="container">
         <h1>About Student Assistant</h1>
-        <p class="lead">Your academic partner for better learning and student life!</p>
+        <p class="lead">learning and student life!</p>
     </div>
 </section>
 
